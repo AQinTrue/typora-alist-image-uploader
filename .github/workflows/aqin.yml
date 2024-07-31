@@ -43,6 +43,8 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.version.outputs.VERSION }}
-          name: ${{ steps.version.outputs.VERSION }}
+          name: Release ${{ steps.version.outputs.VERSION }}
+          body: |
+            ## 实现基础上传功能
           files: taiu-${{ steps.version.outputs.VERSION }}-win64.zip
           token: ${{ secrets.GITHUB_TOKEN }}
