@@ -23,7 +23,7 @@ jobs:
           pip install nuitka
           pip install requests
           pip install pycryptodome
-          python -m nuitka --mingw64 --show-progress --onefile main.py -o TAIU.exe
+          python -m nuitka --mingw64 --show-progress --standalone main.py -o TAIU.exe
 
       - name: 获取版本号
         id: get_version
