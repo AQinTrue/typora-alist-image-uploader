@@ -12,14 +12,15 @@ jobs:
       - name: 读取仓库内容
         uses: actions/checkout@v4
 
-      - name: 开始打包
+      - name: 配置Python环境
         uses: actions/setup-python@v5
         with:
           python-version: '3.12.4'
-          cache: 'pip' # caching pip dependencies
-      - run: |
-          pip install -r requirements.txt
-          python -m nuitka --show-progress --standalone --onefile main.py -o Win64-TAIU.exe
+        run: |
+            pip install -r requirements.txt
+      - name: 开始打包
+        run: |
+            python -m nuitka --mingw64 --show-progress --standalone --onefile main.py -o Win64-TAIU.exe
 
       - name: 获取版本号
         id: get_version
