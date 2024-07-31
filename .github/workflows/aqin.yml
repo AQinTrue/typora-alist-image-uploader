@@ -1,8 +1,8 @@
 name: 打包
 on:
   push:
-    tags:
-      - v*
+    branches:
+      - main
 
 jobs:
   build-and-release:
@@ -22,13 +22,9 @@ jobs:
           pip install -r requirements.txt
           python -m nuitka --mingw64 --show-progress --standalone --onefile --assume-yes-for-downloads main.py -o Win64-TAIU.exe
 
-      - name: 获取版本号
-        id: get_version
-        run: |
-          $tagRef = ${{ github.ref }}
-          $tagParts = $tagRef -split '/'
-          $TAG_NAME = $tagParts[2]
-          echo "TAG_NAME=$TAG_NAME" >> $GITHUB_OUTPUT
+      - name: 获取项目信息
+        id: version
+        run: echo "VERSION=$(node -p 'require(`./package.json`).version')" >> $GITHUB_ENV
 
       - name: 创建标签
         id: create-tag
@@ -37,12 +33,12 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           github_repo: ${{ github.repository }}
           git_commit_sha: ${{ github.sha }}
-          version: ${{ steps.get_version.outputs.TAG_NAME }}
+          version: ${{ env.VERSION }}
 
       - name: 发布版本
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ steps.get_version.outputs.TAG_NAME }}
-          name: ${{ steps.get_version.outputs.TAG_NAME }}
+          tag_name: ${{ env.VERSION }}
+          name: ${{ env.VERSION }}
           files: Win64-TAIU.exe
           token: ${{ secrets.GITHUB_TOKEN }}
