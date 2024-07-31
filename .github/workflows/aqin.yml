@@ -27,7 +27,7 @@ jobs:
         run: |
           $tagRef = ${{ github.ref }}
           $tagParts = $tagRef -split '/'
-          TAG_NAME = $tagParts[2]
+          $TAG_NAME = $tagParts[2]
           echo "TAG_NAME=$TAG_NAME" >> $GITHUB_OUTPUT
 
       - name: 创建标签
