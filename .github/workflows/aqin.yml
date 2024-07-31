@@ -17,16 +17,16 @@ jobs:
         with:
           python-version: '3.12.4'
 
+      - name: 获取项目信息
+        id: version
+        run: |
+          VERSION=$(node -p -e '`VERSION=${require("./package.json").version}`')
+          echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
+
       - name: 开始打包
         run: |
           pip install -r requirements.txt
           python -m nuitka --mingw64 --show-progress --standalone --onefile --assume-yes-for-downloads main.py -o Win64-TAIU.exe
-
-      - name: 获取项目信息
-        id: version
-        run: |
-          VERSION=$(node -p 'require("./package.json").version')
-          echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
 
       - name: 创建标签
         id: create-tag
