@@ -19,9 +19,10 @@ jobs:
 
       - name: 获取项目信息
         id: version
+        shell: pwsh # 使用 PowerShell (pwsh 是 PowerShell 的可执行文件名)
         run: |
-          VERSION=$(node -p "require('./package.json').version")
-          echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
+          $VERSION = $(node -p "require('./package.json').version")
+          echo "VERSION=$VERSION" >> $env:GITHUB_OUTPUT
 
       - name: 开始打包
         run: |
