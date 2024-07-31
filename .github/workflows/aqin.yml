@@ -16,7 +16,6 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.12.4'
-          cache: 'pip'
 
       - name: 开始打包
         run: |
