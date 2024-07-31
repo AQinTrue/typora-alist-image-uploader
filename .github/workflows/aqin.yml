@@ -25,7 +25,9 @@ jobs:
       - name: 获取版本号
         id: get_version
         run: |
-          TAG_NAME=$(echo "${{ github.ref }}" | cut -d '/' -f3)
+          $tagRef = ${{ github.ref }}
+          $tagParts = $tagRef -split '/'
+          TAG_NAME = $tagParts[2]
           echo "TAG_NAME=$TAG_NAME" >> $GITHUB_OUTPUT
 
       - name: 创建标签
