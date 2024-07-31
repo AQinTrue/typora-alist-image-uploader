@@ -16,11 +16,12 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.12.4'
+          architecture: 'x64'
 
       - name: 开始打包
         run: |
-            pip install -r requirements.txt
-            python -m nuitka --mingw64 --show-progress --standalone --onefile main.py -o Win64-TAIU.exe
+          pip install -r requirements.txt
+          python -m nuitka --mingw64 --show-progress --standalone --onefile main.py -o Win64-TAIU.exe
 
       - name: 获取版本号
         id: get_version
@@ -42,5 +43,5 @@ jobs:
         with:
           tag_name: ${{ steps.get_version.outputs.TAG_NAME }}
           name: ${{ steps.get_version.outputs.TAG_NAME }}
-          files: Win64-TAIU.exe
+          files: main.build/Win64-TAIU.exe
           token: ${{ secrets.GITHUB_TOKEN }}
