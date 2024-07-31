@@ -7,7 +7,7 @@ on:
 jobs:
   build-and-release:
     name: 开始执行
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - name: 读取仓库内容
         uses: actions/checkout@v4
@@ -16,11 +16,6 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.12.4'
-          architecture: 'x64'
-
-      - name: 设置环境变量以允许自动下载
-        run: |
-          echo "NUITKA_DOWNLOAD_MINGW=yes" >> $GITHUB_ENV
 
       - name: 开始打包
         run: |
