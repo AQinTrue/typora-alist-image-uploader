@@ -19,7 +19,7 @@ jobs:
           cache: 'pip' # caching pip dependencies
       - run: |
           pip install -r requirements.txt
-          python -m nuitka --mingw64 --show-progress --standalone main.py -o TAIU.exe
+          python -m nuitka --show-progress --standalone --onefile main.py -o Win64-TAIU.exe
 
       - name: 获取版本号
         id: get_version
@@ -41,5 +41,5 @@ jobs:
         with:
           tag_name: ${{ steps.get_version.outputs.TAG_NAME }}
           name: ${{ steps.get_version.outputs.TAG_NAME }}
-          files: main.dist
+          files: Win64-TAIU.exe
           token: ${{ secrets.GITHUB_TOKEN }}
