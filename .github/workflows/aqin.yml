@@ -24,7 +24,7 @@ jobs:
 
       - name: 获取项目信息
         id: version
-        run: echo "VERSION=$(node -p 'require(`./package.json`).version')" >> $GITHUB_ENV
+        run: node -p -e '`VERSION=${require("./package.json").version}`' >> $GITHUB_ENV
 
       - name: 创建标签
         id: create-tag
