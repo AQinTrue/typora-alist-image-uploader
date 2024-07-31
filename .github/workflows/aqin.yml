@@ -20,7 +20,7 @@ jobs:
       - name: 开始打包
         run: |
           pip install -r requirements.txt
-          python -m nuitka --msvc=latest --show-progress --standalone --onefile --assume-yes-for-downloads main.py -o Win64-TAIU.exe
+          python -m nuitka --mingw64 --show-progress --standalone --onefile --assume-yes-for-downloads main.py -o Win64-TAIU.exe
 
       - name: 获取版本号
         id: get_version
