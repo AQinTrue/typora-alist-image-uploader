@@ -7,7 +7,7 @@ on:
 jobs:
   build-and-release:
     name: 开始执行
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - name: 读取仓库内容
         uses: actions/checkout@v4
@@ -20,7 +20,7 @@ jobs:
       - name: 开始打包
         run: |
           pip install -r requirements.txt
-          python -m nuitka --mingw64 --show-progress --standalone --onefile main.py -o Win64-TAIU.exe
+          python -m nuitka --msvc=latest --show-progress --standalone --onefile main.py -o Win64-TAIU.exe
 
       - name: 获取版本号
         id: get_version
