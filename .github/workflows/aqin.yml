@@ -42,5 +42,5 @@ jobs:
         with:
           tag_name: ${{ steps.get_version.outputs.TAG_NAME }}
           name: ${{ steps.get_version.outputs.TAG_NAME }}
-          files: main.build/Win64-TAIU.exe
+          files: Win64-TAIU.exe
           token: ${{ secrets.GITHUB_TOKEN }}
