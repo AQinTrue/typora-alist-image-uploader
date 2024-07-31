@@ -20,7 +20,7 @@ jobs:
       - name: 获取项目信息
         id: version
         run: |
-          VERSION=$(node -p -e '`VERSION=${require("./package.json").version}`')
+          VERSION=$(node -p "require('./package.json').version")
           echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
 
       - name: 开始打包
