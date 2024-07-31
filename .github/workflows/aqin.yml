@@ -18,6 +18,10 @@ jobs:
           python-version: '3.12.4'
           architecture: 'x64'
 
+      - name: 设置环境变量以允许自动下载
+        run: |
+          echo "NUITKA_DOWNLOAD_MINGW=yes" >> $GITHUB_ENV
+
       - name: 开始打包
         run: |
           pip install -r requirements.txt
