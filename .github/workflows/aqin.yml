@@ -28,7 +28,7 @@ jobs:
         run: |
           pip install -r requirements.txt
           python -m nuitka --mingw64 --show-progress --standalone --assume-yes-for-downloads main.py -o taiu-win64-${{ steps.version.outputs.VERSION }}.exe
-          Compress-Archive -Path ./main.dist/* -DestinationPath taiu-win64-${{ steps.version.outputs.VERSION }}.zip
+          Compress-Archive -Path ./main.dist/* -DestinationPath taiu-${{ steps.version.outputs.VERSION }}-win64.zip
 
       - name: 创建标签
         id: create-tag
@@ -44,5 +44,5 @@ jobs:
         with:
           tag_name: ${{ steps.version.outputs.VERSION }}
           name: ${{ steps.version.outputs.VERSION }}
-          files: taiu-win64-${{ steps.version.outputs.VERSION }}.zip
+          files: taiu-${{ steps.version.outputs.VERSION }}-win64.zip
           token: ${{ secrets.GITHUB_TOKEN }}
