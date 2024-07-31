@@ -27,7 +27,7 @@ jobs:
       - name: 开始打包
         run: |
           pip install -r requirements.txt
-          python -m nuitka --mingw64 --show-progress --standalone --onefile --assume-yes-for-downloads main.py -o Win64-TAIU.exe
+          python -m nuitka --mingw64 --show-progress --standalone --assume-yes-for-downloads main.py -o Win64-TAIU.exe --output-dir=out
 
       - name: 创建标签
         id: create-tag
