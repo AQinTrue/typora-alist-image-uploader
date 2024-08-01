@@ -1,8 +1,6 @@
 name: 打包
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
 
 jobs:
   build-and-release:

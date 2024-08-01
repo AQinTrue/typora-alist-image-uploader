@@ -16,7 +16,7 @@ taiu-win64-v1.0.0.exe -h
 taiu-win64-v1.0.0.exe --type uconfig --url https://# --path taiu/img --token alist-token
 ```
 - Typora配置
-```
+```shell
 D:\PATH\TAIU.exe --type upload --upload_args 
 ```
 - 在Typora中插入图片。
