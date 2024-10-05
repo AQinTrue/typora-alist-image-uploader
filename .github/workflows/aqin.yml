@@ -28,7 +28,7 @@ jobs:
 
       - name: 开始打包
         run: |
-          python -m nuitka --mingw64 --show-progress --standalone --assume-yes-for-downloads main.py -o taiu-win64.exe
+          python -m nuitka --mingw64 --show-progress --standalone --assume-yes-for-downloads main.py -o taiu.exe
           Compress-Archive -Path ./main.dist/* -DestinationPath taiu-${{ steps.version.outputs.VERSION }}-win64.zip
 
       - name: 创建标签

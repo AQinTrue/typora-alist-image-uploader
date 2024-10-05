@@ -9,11 +9,11 @@
 - 下载解压。
 - 查看参数
 ```shell
-taiu-win64-v1.0.0.exe -h
+taiu.exe -h
 ```
 - 初始化配置
 ```shell
-taiu-win64-v1.0.0.exe --type uconfig --url https://# --path taiu/img --token alist-token
+taiu.exe --type uconfig --url https://# --path taiu/img --token alist-token
 ```
 - Typora配置
 ```shell
