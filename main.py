@@ -5,6 +5,7 @@ import time
 from datetime import datetime
 from DataCrypto import DataCrypto
 from ComParse import ComParse
+from FileHandle import FileHandle
 
 
 class QinULoad:
@@ -14,16 +15,11 @@ class QinULoad:
         self.Config = "ULConfig.json"
         self.time_format = "%Y_%m_%d_%H_%M_%S"
         self.upload_message = "Upload Success:"
-        self.base_directory = os.path.join(os.environ['Temp'].rsplit('\\', 1)[0], "AQin")
-        self.create_directory()
-
-    def create_directory(self):
-        if not os.path.exists(self.base_directory):
-            os.makedirs(self.base_directory)
+        self.file_handle = FileHandle()
 
     def initialize(self):
         try:
-            with open(f"{self.base_directory}/{self.Config}", 'r') as config_file:
+            with open(f"{self.file_handle.base_path}/{self.Config}", 'r') as config_file:
                 encrypted_content = json.load(config_file)
                 return (self.cryptographer.decrypt(encrypted_content['url']),
                         self.cryptographer.decrypt(encrypted_content['path']),
@@ -52,7 +48,7 @@ class QinULoad:
         url = self.cryptographer.encrypt(self.command_parser.url)
         path = self.cryptographer.encrypt(self.command_parser.path)
         token = self.cryptographer.encrypt(self.command_parser.token)
-        with open(f"{self.base_directory}/{self.Config}", 'w+') as f:
+        with open(f"{self.file_handle.base_path}/{self.Config}", 'w+') as f:
             content = {
                 "url": url.decode(),
                 "path": path.decode(),
