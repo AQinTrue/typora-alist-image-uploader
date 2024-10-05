@@ -22,9 +22,12 @@ jobs:
           $VERSION = $(node -p "require('./package.json').version")
           echo "VERSION=$VERSION" >> $env:GITHUB_OUTPUT
 
-      - name: 开始打包
+      - name: 安装依赖
         run: |
           pip install -r requirements.txt
+
+      - name: 开始打包
+        run: |
           python -m nuitka --mingw64 --show-progress --standalone --assume-yes-for-downloads main.py -o taiu-win64-${{ steps.version.outputs.VERSION }}.exe
           Compress-Archive -Path ./main.dist/* -DestinationPath taiu-${{ steps.version.outputs.VERSION }}-win64.zip
 
