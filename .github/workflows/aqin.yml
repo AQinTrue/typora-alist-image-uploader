@@ -43,6 +43,6 @@ jobs:
           tag_name: ${{ steps.version.outputs.VERSION }}
           name: Release ${{ steps.version.outputs.VERSION }}
           body: |
-            ## 实现基础上传功能
+            ## 优化配置文件保存路径
           files: taiu-${{ steps.version.outputs.VERSION }}-win64.zip
           token: ${{ secrets.GITHUB_TOKEN }}
