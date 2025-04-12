@@ -10,42 +10,19 @@ jobs:
       - name: 读取仓库内容
         uses: actions/checkout@v4
 
-      - name: 配置Python环境
-        uses: actions/setup-python@v5
+      - name: 安装upx
+        run: sudo apt-get install -y upx
+
+      - name: 安装GO
+        uses: actions/setup-go@v5
         with:
-          python-version: '3.12.4'
-
-      - name: 获取项目信息
-        id: version
-        shell: pwsh # 使用 PowerShell (pwsh 是 PowerShell 的可执行文件名)
-        run: |
-          $VERSION = $(node -p "require('./package.json').version")
-          echo "VERSION=$VERSION" >> $env:GITHUB_OUTPUT
-
-      - name: 安装依赖
-        run: |
-          pip install -r requirements.txt
+          go-version: 'stable'
 
       - name: 开始打包
-        run: |
-          python -m nuitka --mingw64 --show-progress --standalone --assume-yes-for-downloads main.py -o taiu.exe
-          Compress-Archive -Path ./main.dist/* -DestinationPath taiu-${{ steps.version.outputs.VERSION }}-win64.zip
-
-      - name: 创建标签
-        id: create-tag
-        uses: pkgdeps/git-tag-action@v3
+        uses: goreleaser/goreleaser-action@v6
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          github_repo: ${{ github.repository }}
-          git_commit_sha: ${{ github.sha }}
-          version: ${{ steps.version.outputs.VERSION }}
-
-      - name: 发布版本
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: ${{ steps.version.outputs.VERSION }}
-          name: Release ${{ steps.version.outputs.VERSION }}
-          body: |
-            ## 优化配置文件保存路径
-          files: taiu-${{ steps.version.outputs.VERSION }}-win64.zip
-          token: ${{ secrets.GITHUB_TOKEN }}
+          distribution: goreleaser
+          version: 'latest'
+          args: release --clean
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

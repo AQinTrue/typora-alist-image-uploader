@@ -1,0 +1,42 @@
+version: 1
+
+before:
+  hooks:
+    - go mod tidy
+
+upx:
+  enabled: true
+  compress: best
+  lzma: true
+
+builds:
+  - env:
+      - CGO_ENABLED=0
+    goos:
+      - windows
+      - linux
+    goarch:
+      - amd64
+      - arm64
+
+archives:
+  - files: binary
+
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
+      - "^style:"
+      - "^ci:"
+      - "^perf:"
+      - "^build:"
+      - "^deps:"
+      - "^vendor:"
+      - "^internal:"
+      - "^examples:"
+
+checksum:
+  algorithm: sha256
