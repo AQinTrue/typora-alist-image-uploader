@@ -1,6 +1,8 @@
-name: 打包
+name: Release
 on:
-  workflow_dispatch:
+  push:
+    tags:
+      - 'v*'
 
 jobs:
   build-and-release:
