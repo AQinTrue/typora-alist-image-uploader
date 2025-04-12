@@ -20,7 +20,7 @@ builds:
       - arm64
 
 archives:
-  - files: binary
+  - format: binary
 
 
 changelog:
