@@ -9,15 +9,15 @@
 - 下载解压。
 - 查看参数
 ```shell
-taiu.exe -h
+taiu-windows-amd64.exe -h
 ```
 - 初始化配置
 ```shell
-taiu.exe --type uconfig --url https://# --path taiu/img --token alist-token
+taiu-windows-amd64.exe --type uconfig --url https://# --path taiu/img --token alist-token
 ```
 - Typora配置
 ```shell
-D:\PATH\TAIU.exe --type upload --upload_args 
+D:\PATH\taiu-windows-amd64.exe --type upload --upload_args 
 ```
 - 在Typora中插入图片。
 - 查看上传结果。
