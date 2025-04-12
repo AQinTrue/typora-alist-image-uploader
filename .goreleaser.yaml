@@ -5,7 +5,7 @@ before:
     - go mod tidy
 
 upx:
-  - enabled: true
+  - enabled: false
     compress: best
     lzma: true
 
