@@ -5,13 +5,13 @@ on:
 jobs:
   build-and-release:
     name: 开始执行
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - name: 读取仓库内容
         uses: actions/checkout@v4
 
       - name: 安装upx
-        run: apt-get install -y upx
+        run: sudo apt-get install -y upx
 
       - name: 安装GO
         uses: actions/setup-go@v5
