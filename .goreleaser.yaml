@@ -21,6 +21,7 @@ builds:
 
 archives:
   - format: binary
+    name_template: "taiu-{{ .Os }}-{{ .Arch }}"
 
 
 changelog:
