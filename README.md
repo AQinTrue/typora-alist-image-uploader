@@ -13,11 +13,11 @@ taiu-windows-amd64.exe -h
 ```
 - 初始化配置
 ```shell
-taiu-windows-amd64.exe --type uconfig --url https://# --path taiu/img --token alist-token
+taiu-windows-amd64.exe --type updateConfig --url https://# --path taiu/img --token alist-token
 ```
 - Typora配置
 ```shell
-D:\PATH\taiu-windows-amd64.exe --type upload --upload_args 
+D:\PATH\taiu-windows-amd64.exe --type uploadImg 图片路径1, 图片路径2
 ```
 - 在Typora中插入图片。
 - 查看上传结果。
