@@ -13,7 +13,7 @@ taiu-windows-amd64.exe -h
 ```
 - 初始化配置
 ```shell
-taiu-windows-amd64.exe --type updateConfig --url https://example.com --path taiu/img --token alist-token
+taiu-windows-amd64.exe --type updateConfig --url https://example.com/ --path taiu/img --token alist-token
 ```
 - Typora配置
 ```shell
